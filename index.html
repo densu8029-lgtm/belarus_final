@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🇧🇾 Беларусь • Май 2026</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+    :root {
+      --bg: var(--tg-theme-bg-color, #ffffff);
+      --text: var(--tg-theme-text-color, #000000);
+      --secondary: var(--tg-theme-secondary-bg-color, #f4f4f5);
+      --accent: var(--tg-theme-button-color, #3390ec);
+      --accent-text: var(--tg-theme-button-text-color, #ffffff);
+      --link: var(--tg-theme-link-color, #2481cc);
+      --hint: var(--tg-theme-hint-color, #888888);
+      --section-border: 1px solid var(--secondary);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.55; padding-bottom: 80px;
+    }
+    a { color: var(--link); text-decoration: none; transition: opacity 0.2s; }
+    a:active { opacity: 0.7; }
+    header { padding: 20px 16px 12px; text-align: center; background: var(--secondary); border-bottom: var(--section-border); }
+    h1 { margin: 0 0 4px; font-size: 1.6em; letter-spacing: -0.5px; }
+    .subtitle { color: var(--hint); font-size: 0.9em; margin: 0; }
+    
+    /* Sticky Nav */
+    nav { position: sticky; top: 0; background: var(--bg); padding: 8px 0; z-index: 100; border-bottom: var(--section-border); overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { display: inline-block; padding: 8px 12px; margin: 0 4px 0 0; background: var(--secondary); border-radius: 20px; font-size: 0.85em; font-weight: 500; }
+    nav a.active { background: var(--accent); color: var(--accent-text); }
+
+    main { padding: 0 12px; max-width: 800px; margin: 0 auto; }
+    section { margin: 24px 0; }
+    h2 { border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin: 24px 0 12px; font-size: 1.3em; }
+    h3 { margin: 16px 0 8px; font-size: 1.1em; color: var(--hint); }
+    
+    .card { background: var(--secondary); padding: 14px; border-radius: 12px; margin: 10px 0; }
+    .day-header { background: var(--accent); color: var(--accent-text); padding: 10px 12px; border-radius: 10px; margin: 18px 0 8px; font-weight: 600; }
+    .sub-nav { display: flex; gap: 6px; overflow-x: auto; padding: 6px 0 10px; }
+    .sub-nav::-webkit-scrollbar { display: none; }
+    .sub-nav a { background: var(--secondary); padding: 4px 10px; border-radius: 15px; font-size: 0.8em; white-space: nowrap; flex-shrink: 0; }
+    
+    .time-block { display: flex; align-items: flex-start; gap: 10px; margin: 12px 0; padding-left: 10px; border-left: 3px solid var(--accent); }
+    .time { font-weight: 600; min-width: 65px; color: var(--accent); font-size: 0.95em; padding-top: 2px; }
+    .link-btn { display: inline-block; margin-top: 4px; padding: 4px 8px; background: var(--accent); color: var(--accent-text); border-radius: 6px; font-size: 0.8em; }
+    .city-group { margin: 16px 0; }
+    .city-group h3 { background: var(--secondary); display: inline-block; padding: 4px 8px; border-radius: 6px; margin-bottom: 8px; }
+    
+    /* Checklist */
+    .progress-bar { text-align: center; font-weight: 600; margin: 12px 0; color: var(--accent); font-size: 1.1em; }
+    .checklist-group { margin: 14px 0; }
+    .checklist-item { display: flex; align-items: center; gap: 12px; margin: 6px 0; padding: 10px; background: var(--secondary); border-radius: 10px; transition: background 0.2s; }
+    input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+    .checklist-item:has(input:checked) { opacity: 0.7; text-decoration: line-through; }
+    button#reset-btn { display: block; width: 100%; padding: 14px; margin-top: 16px; background: transparent; color: var(--hint); border: 1px dashed var(--hint); border-radius: 10px; cursor: pointer; font-size: 0.95em; }
+    button#reset-btn:active { background: var(--secondary); color: var(--text); }
+    
+    .note { background: rgba(51, 144, 236, 0.1); border-left: 4px solid var(--accent); padding: 12px; border-radius: 8px; margin: 16px 0; font-size: 0.9em; }
+    .scroll-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: var(--accent-text); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 90; transition: transform 0.2s; }
+    .scroll-top:active { transform: scale(0.9); }
+    .scroll-top.hidden { opacity: 0; pointer-events: none; }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.4em; }
+      .time-block { flex-direction: column; gap: 4px; border-left: none; padding-left: 0; }
+      .time { font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🇧🇾 Беларусь • Май 2026</h1>
+    <p class="subtitle">Наш трип • 3 машины • 8 дней • Поехали 📍</p>
+  </header>
+
+  <nav id="main-nav">
+    <a href="#route">🗓 Маршрут</a>
+    <a href="#food">🍽 Кафе</a>
+    <a href="#attractions">🏛 Места</a>
+    <a href="#reference">📖 Справка</a>
+    <a href="#checklist">✅ Чек-лист</a>
+  </nav>
+
+  <main>
+    <!-- МАРШРУТ -->
+    <section id="route">
+      <h2>🗓 Маршрут</h2>
+      <div class="sub-nav">
+        <a href="#day-9">9 мая</a><a href="#day-10">10 мая</a><a href="#day-11">11 мая</a>
+        <a href="#day-12">12 мая</a><a href="#day-13">13 мая</a><a href="#day-14">14 мая</a>
+        <a href="#day-15">15 мая</a><a href="#day-16">16 мая</a>
+      </div>
+
+      <div class="day-header" id="day-9">🗓 9 МАЯ • СУББОТА</div>
+      <div class="card">
+        <div class="time-block"><span class="time">06:30</span><span>🚗 Москва → Атолино. Встреча на заправке ТатНефть. Старт поездки. Выезжаем из Москвы по трассе М-1 <a href="https://yandex.ru/maps/?pt=36.873651,55.589296&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">11:30</span><span>⛽ Заправка ТатНефть перед границей. Последняя заправка в России перед границей <a href="https://yandex.ru/maps/?pt=31.064338,54.690758&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">14:30</span><span>🛒 ТЦ Момо. Обедаем, меняем деньги, покупаем симки <a href="https://yandex.ru/maps/?pt=27.674031,53.859626&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">18:00</span><span>🏠 Заселение в Атолино. Янтарная ул., 23. Размещаемся в домах <a href="https://yandex.ru/maps/?pt=27.448349,53.771107&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">20:00</span><span>🍽 Ужин в центре Минска. Едем в центр на ужин</span></div>
+        <div class="time-block"><span class="time">20:30</span><span>🎖 Парад у Дворца Спорта. Праздничное мероприятие ко Дню Победы <a href="https://yandex.ru/maps/?pt=27.549546,53.910192&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">21:40</span><span>🎆 Праздничный салют. Завершаем день праздничным салютом</span></div>
+      </div>
+
+      <div class="day-header" id="day-10">🗓 10 МАЯ • ВОСКРЕСЕНЬЕ</div>
+      <div class="card">
+        <div class="time-block"><span class="time">11:00</span><span>🏛 Центр Минска. Площадь Независимости, Дом Правительства, Костёл Симеона и Елены <a href="https://yandex.ru/maps/?pt=27.547338,53.895294&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">13:00</span><span>🎖 Линия Сталина. Реконструкция Берлинской наступательной операции 1945. Танки Т-72, шоу кинологов. <a href="https://stalin-line.by/event/den-pobedy/" class="link-btn">🌐 Сайт</a> <a href="https://yandex.ru/maps/?pt=27.297058,54.058070&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">17:00</span><span>🏡 Музей народной архитектуры и быта. Этнографический музей под открытым небом <a href="http://etna.by/" class="link-btn">🌐 Сайт</a> <a href="https://yandex.ru/maps/?pt=27.374042,53.834171&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">Вечер</span><span>🌆 Свободная программа. Отдыхаем, ужинаем или гуляем по вечернему Минску</span></div>
+      </div>
+
+      <div class="day-header" id="day-11">🗓 11 МАЯ • ПОНЕДЕЛЬНИК</div>
+      <div class="card">
+        <div class="time-block"><span class="time">11:00</span><span>🚒 Центр Безопасности МЧС. Интерактивный музей. 35 локаций с симуляцией ЧС. <a href="https://center.ucp.by/" class="link-btn">🌐 Сайт</a> <a href="https://yandex.ru/maps/?pt=27.608819,53.945417&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">14:00</span><span>🏛 Прогулка по центру. Ратуша, Дворец Республики, Верхний город, ЦУМ. Опционально: детская ж/д, Комаровский рынок, Коммунарка, Крыница, зоопарк, смотровая библиотеки <a href="https://yandex.ru/maps/?pt=27.558515,53.903588&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">Вечер</span><span>🌃 Свободный вечер. Отдыхаем — завтра супернасыщенный день!</span></div>
+      </div>
+
+      <div class="day-header" id="day-12">🗓 12 МАЯ • ВТОРНИК</div>
+      <div class="card">
+        <div class="time-block"><span class="time">10:00</span><span>🚗 Выезд из Минска. Направляемся к Мирскому замку</span></div>
+        <div class="time-block"><span class="time">11:00</span><span>🏰 Мирский замок (ЮНЕСКО). Один из лучших замков Восточной Европы <a href="https://yandex.ru/maps/?pt=26.472910,53.451208&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">13:00</span><span>🏰 Несвижский замок (ЮНЕСКО). Резиденция Радзивиллов <a href="https://yandex.ru/maps/?pt=26.692562,53.222555&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">18:00</span><span>🏠 Прибытие в Брест, заселение. ул. Маяковского, 17/3 <a href="https://yandex.ru/maps/?pt=23.690677,52.093703&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">20:00</span><span>💡 Фонарщик на Советской. Ужинаем, отдыхаем, смотрим как фонарщик зажигает фонари <a href="https://yandex.ru/maps/?pt=23.696090,52.086866&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+      </div>
+
+      <div class="day-header" id="day-13">🗓 13 МАЯ • СРЕДА</div>
+      <div class="card">
+        <div class="time-block"><span class="time">09:00</span><span>🏰 Брестская крепость. Мемориальный комплекс, вход свободный <a href="https://yandex.ru/maps/?pt=23.659584,52.083320&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">13:30</span><span>🌲 Беловежская пуща. Обедаем, гуляем, смотрим зубров <a href="https://yandex.ru/maps/?pt=23.801838,52.572185&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">19:00</span><span>🏠 Прибытие в Гродно, заселение. ул. Свердлова, 16. Ужин, отдых <a href="https://yandex.ru/maps/?pt=23.835261,53.675310&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+      </div>
+
+      <div class="day-header" id="day-14">🗓 14 МАЯ • ЧЕТВЕРГ</div>
+      <div class="card">
+        <div class="time-block"><span class="time">11:00</span><span>🚣 Августовский канал (ЮНЕСКО). Гидросооружение XIX века, живописное место <a href="https://yandex.ru/maps/?pt=23.625125,53.861733&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></span></div>
+        <div class="time-block"><span class="time">14:00</span><span>🏛 Возврат в Гродно. Обедаем, гуляем по городу (Замки, Костёлы, пешеходные улицы). Либо едем в Коробчаны. Оставляем город на вечер — смотрим по погоде</span></div>
+      </div>
+
+      <div class="day-header" id="day-15">🗓 15 МАЯ • ПЯТНИЦА</div>
+      <div class="card">
+        <div class="time-block"><span class="time">Утро</span><span>🍳 Завтрак, выселение. Неспешно выдвигаемся в Россию. По желанию: Хатынь или Жодино (БелАЗ)</span></div>
+        <div class="time-block"><span class="time">19:00</span><span>🏁 Прибытие в Смоленск. Гуляем по городу, ужинаем, отдыхаем</span></div>
+      </div>
+
+      <div class="day-header" id="day-16">🗓 16 МАЯ • СУББОТА</div>
+      <div class="card">
+        <div class="time-block"><span class="time">Утро</span><span>🍳 Завтрак, выселение</span></div>
+        <div class="time-block"><span class="time">День</span><span>🚶 Прогулка по Смоленску</span></div>
+        <div class="time-block"><span class="time">Вечер</span><span>🏠 Выезд домой в Москву. Финиш путешествия!</span></div>
+      </div>
+    </section>
+
+    <!-- КАФЕ -->
+    <section id="food">
+      <h2>🍽 Кафе и рестораны</h2>
+      <div class="city-group">
+        <h3>Минск</h3>
+        <div class="card">
+          <strong>🥔 Драничная №1</strong> | ул. Комсомольская, 9 | национальная кухня<br>
+          <a href="https://dranichnaya1.by/" class="link-btn">🌐 Сайт</a> <a href="https://yandex.ru/maps/?pt=27.551874,53.903021&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a>
+        </div>
+        <div class="card">
+          <strong>🍽 Лидо</strong> | пр-т Независимости, 49 • ул. Кульман, 5а • ул. Немига, 5 | сеть, самообслуживание<br>
+          <a href="https://www.lido.by/" class="link-btn">🌐 Сайт</a>
+        </div>
+        <div class="card">
+          <strong>🥞 Панский драник</strong> | ул. Володарского, 10 • ул. Раковская, 18<br>
+          <a href="https://yandex.ru/maps/?pt=27.550872,53.897697&z=15&l=map&rtt=auto" class="link-btn">📍 Володарского</a> <a href="https://yandex.ru/maps/?pt=27.548310,53.904962&z=15&l=map&rtt=auto" class="link-btn">📍 Раковская</a>
+        </div>
+        <div class="card">
+          <strong>🏰 Камянiца</strong> | ул. Первомайская, 18 | ресторан, атмосфера<br>
+          <a href="https://yandex.ru/maps/?pt=27.574587,53.900172&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a>
+        </div>
+        <div class="card">
+          <strong>🍲 Литвины</strong> | ул. Свердлова, 2 | национальная кухня<br>
+          <a href="https://litviny.by/" class="link-btn">🌐 Сайт</a> <a href="https://yandex.ru/maps/?pt=27.547492,53.897261&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a>
+        </div>
+        <div class="card">
+          <strong>🌻 Васильки</strong> | сеть, национальная кухня<br>
+          <a href="https://vasilki.by/" class="link-btn">🌐 Сайт</a>
+        </div>
+      </div>
+      <div class="city-group">
+        <h3>Брест</h3>
+        <div class="card"><strong>🏠 Дом Фани Браверман</strong> | Советская ул., 53 | рядом с квартирой<br>Завтрак/ужин. Через дорогу от нашей квартиры. Бизнес-ланч, уютная атмосфера.</div>
+        <div class="card"><strong>🎩 Жюль Верн</strong> | ул. Гоголя, 29 | европейская кухня <a href="https://yandex.ru/maps/?pt=23.689187,52.091694&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card"><strong>☕ Times Cafe</strong> | Советская ул., 30 | кофейня, центр <a href="https://yandex.ru/maps/?pt=23.691403,52.094756&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card"><strong>🥟 Хинкальня</strong> | ул. Гоголя, 40 | грузинская кухня <a href="https://yandex.ru/maps/?pt=23.689518,52.092450&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+      </div>
+      <div class="city-group">
+        <h3>Гродно</h3>
+        <div class="card"><strong>🍕 Справа</strong> | ул. Мостовая, 31 | пицца, уютно <a href="https://yandex.ru/maps/?pt=23.828509,53.677182&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card"><strong>🍝 Наполи</strong> | ул. Б. Троицкая, 9 | итальянская кухня <a href="https://yandex.ru/maps/?pt=23.830214,53.682435&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card"><strong>🥐 Проходная</strong> | ул. Мостовая, 31 | завтраки, кофе<br>Идеально для утреннего кофе и лёгкого завтрака. <a href="https://yandex.ru/maps/?pt=23.828471,53.676597&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+      </div>
+    </section>
+
+    <!-- ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+    <section id="attractions">
+      <h2>🏛 Достопримечательности</h2>
+      <div class="city-group">
+        <h3>Минск и окрестности</h3>
+        <div class="card">🏛 <strong>Ворота Минска</strong> | 📍 пл. Привокзальная • ⏱ 15 мин<br>Две сталинские высотки. Часы на башнях, монументальная архитектура. <a href="https://yandex.ru/maps/?pt=27.5545,53.8936&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">⛪ <strong>Костёл Симеона и Елены</strong> | 📍 пл. Независимости, 15 • 🕒 09:00–20:00<br>Неоготика начала XX века, красный кирпич, шпили. <a href="https://yandex.ru/maps/?pt=27.5613,53.9041&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🏛 <strong>Верхний город + Ратуша</strong> | 📍 пл. Свободы, 8 • ⏱ 2 ч<br>Брусчатка, реставрированные фасады, Собор Св. Духа. <a href="https://yandex.ru/maps/?pt=27.5553,53.9069&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🏘 <strong>Троицкое предместье</strong> | 📍 ул. Старовиленская • ⏱ 1,5 ч<br>Исторический квартал XIX в. у Свислочи. <a href="https://yandex.ru/maps/?pt=27.5490,53.9065&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🚒 <strong>Центр безопасности МЧС</strong> | 📍 ул. Олешева, 2 • 📞 По записи<br>35 интерактивных локаций. <a href="https://center.ucp.by/" class="link-btn">📞 Записаться</a> <a href="https://yandex.ru/maps/?pt=27.6462,53.9268&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">📐 <strong>Нац. библиотека + смотровая</strong> | 📍 пр-т Независимости, 116 • 🕒 09:00–22:00<br>Смотровая на 23 этаже. Вечером подсветка. <a href="https://yandex.ru/maps/?pt=27.6633,53.9318&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🏰 <strong>Мирский замок</strong> | 📍 г. Мир, Замковая 2 • 🕒 10:00–18:00 <a href="https://yandex.ru/maps/?pt=26.4698,53.4500&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🏰 <strong>Несвижский замок</strong> | 📍 г. Несвиж, Ленинская 2 • 🕒 10:00–18:00 <a href="https://yandex.ru/maps/?pt=26.6906,53.2194&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🕊 <strong>Хатынь</strong> | 📍 Логойский р-н, д. Хатынь • 🕒 Вт–Вс 10:00–17:00 <a href="https://yandex.ru/maps/?pt=27.9442,54.3344&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+      </div>
+      <div class="city-group">
+        <h3>Брест & Пуща</h3>
+        <div class="card">🏰 <strong>Брестская крепость</strong> | 📍 ул. Героев обороны, 60А • 🕒 08:00–24:00 <a href="https://yandex.ru/maps/?pt=23.6567,52.0838&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🚶 <strong>Ул. Советская</strong> | 📍 ул. Советская • 🕒 Круглосуточно<br>Фонарщик зажигает фонари в 20:30. <a href="https://yandex.ru/maps/?pt=23.7187,52.0977&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🖼 <strong>Музей «Спасённые ценности»</strong> | 📍 ул. Ленина, 39 • 🕒 Вт–Вс 10:00–17:00 <a href="https://yandex.ru/maps/?pt=23.7185,52.0977&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🦬 <strong>Беловежская пуща</strong> | 📍 д. Каменюки • 🕒 09:00–18:00 • ⚠️ Клещи!<br>Зубры, вольеры, автобус по лесу. <a href="https://yandex.ru/maps/?pt=24.0289,52.5723&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+      </div>
+      <div class="city-group">
+        <h3>Гродно</h3>
+        <div class="card">🏰 <strong>Старый замок</strong> | 📍 ул. Замковая, 20 • 🕒 Вт–Вс 10:00–18:00 <a href="https://yandex.ru/maps/?pt=23.8267,53.6783&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">👑 <strong>Новый замок</strong> | 📍 ул. Замковая, 22 • 🕒 Вт–Вс 10:00–18:00 <a href="https://yandex.ru/maps/?pt=23.8270,53.6783&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🎺 <strong>Каланча + Трубач</strong> | 📍 ул. Советская • ⏱ Ежедн. 11:58 <a href="https://yandex.ru/maps/?pt=23.8279,53.6786&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">⛪ <strong>Фарный костёл</strong> | 📍 Советская пл., 4 • 🕒 08:00–21:00 <a href="https://yandex.ru/maps/?pt=23.8290,53.6793&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🕊 <strong>Коложская церковь (XII в.)</strong> | 📍 ул. Коложа, 6 • 🕒 08:00–19:00 <a href="https://yandex.ru/maps/?pt=23.8230,53.6739&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🔭 <strong>Смотровая ЦУМ</strong> | 📍 ул. Советская, 18 • 🕒 10:00–21:00 <a href="https://yandex.ru/maps/?pt=23.8273,53.6793&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+        <div class="card">🛶 <strong>Августовский канал</strong> | 📍 Гродненская обл. • ⏱ 3–4 ч <a href="https://yandex.ru/maps/?pt=23.6890,53.7168&z=15&l=map&rtt=auto" class="link-btn">📍 Карта</a></div>
+      </div>
+    </section>
+
+    <!-- СПРАВКА -->
+    <section id="reference">
+      <h2>📖 Полезная информация</h2>
+      <div class="card">🚗 <strong>Авто & Страховка</strong><br>«Синяя карта» обязательна для въезда в РБ. Стоимость: 1070–1600 ₽ на 15 дней. Лучше оформить в РФ заранее.</div>
+      <div class="card">⛽ <strong>Заправки</strong><br>Бензин в РБ дороже. Заправляйтесь до полного в РФ. В РБ: Беларуснефть, Лукойл, Газпромнефть, А-100.</div>
+      <div class="card">💰 <strong>Деньги</strong><br>Карты МИР работают везде (автоконвертация). Обмен: ищите курс на <a href="https://myfin.by/">myfin.by</a>.</div>
+      <div class="card">🏨 <strong>Жильё</strong><br>📍 Минск: Атолино, Янтарная ул., 23 <a href="https://yandex.ru/maps/?pt=27.448349,53.771107&z=15&l=map&rtt=auto" class="link-btn">📍</a><br>📍 Брест: ул. Маяковского, 17/3 <a href="https://yandex.ru/maps/?pt=23.690677,52.093703&z=15&l=map&rtt=auto" class="link-btn">📍</a><br>📍 Гродно: ул. Свердлова, 16 <a href="https://yandex.ru/maps/?pt=23.835261,53.675310&z=15&l=map&rtt=auto" class="link-btn">📍</a></div>
+      <div class="card">📱 <strong>Телефон и связь</strong><br>⚠️ Выключите мобильный интернет перед границей! Купите местную симку в РБ.</div>
+    </section>
+
+    <!-- ЧЕК-ЛИСТ -->
+    <section id="checklist">
+      <h2>✅ Чек-лист перед поездкой</h2>
+      <div class="progress-bar" id="progress-text">Готовность поездки: 0 / 13</div>
+      <div id="checklist-container">
+        <div class="checklist-group">
+          <h3>📄 Документы</h3>
+          <label class="checklist-item"><input type="checkbox" id="c1"> Паспорта российские</label>
+          <label class="checklist-item"><input type="checkbox" id="c2"> Для детей загранники</label>
+          <label class="checklist-item"><input type="checkbox" id="c3"> Страховка ОСАГО</label>
+          <label class="checklist-item"><input type="checkbox" id="c4"> ВУ, СТС</label>
+        </div>
+        <div class="checklist-group">
+          <h3>💊 Аптечка</h3>
+          <label class="checklist-item"><input type="checkbox" id="c5"> Жаропонижающие (взрослые + детские)</label>
+          <label class="checklist-item"><input type="checkbox" id="c6"> Антигистаминные (май — цветение!)</label>
+          <label class="checklist-item"><input type="checkbox" id="c7"> Репеллент от клещей (для Пущи — обязательно)</label>
+          <label class="checklist-item"><input type="checkbox" id="c8"> Пластырь + антисептик + бинт</label>
+          <label class="checklist-item"><input type="checkbox" id="c9"> От укачивания (детям в машине)</label>
+          <label class="checklist-item"><input type="checkbox" id="c10"> Энтеросгель / Смекта</label>
+          <label class="checklist-item"><input type="checkbox" id="c11"> Средство от укусов насекомых</label>
+          <label class="checklist-item"><input type="checkbox" id="c12"> Солнцезащитный крем SPF 30+</label>
+          <label class="checklist-item"><input type="checkbox" id="c13"> Личные рецептурные препараты</label>
+        </div>
+      </div>
+      <button id="reset-btn">🔄 Сбросить всё</button>
+      <div class="note">💡 Программа плотная, но времени заложено максимум. Предлагаю в первые дни в Минске обсудить и, возможно, скорректировать маршрут.</div>
+    </section>
+
+    <p style="text-align: center; margin-top: 30px; font-weight: bold; color: var(--accent);">🇧🇾 Счастливого пути!</p>
+    <div class="scroll-top hidden" id="scrollTop">⬆️</div>
+  </main>
+
+  <script>
+    // 1. Инициализация Telegram Mini App
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand(); // Раскрыть на весь экран
+    tg.enableClosingConfirmation(); // Запрос подтверждения при свайпе назад
+
+    // 2. Чек-лист с сохранением
+    const checkboxes = document.querySelectorAll('#checklist-container input[type="checkbox"]');
+    const progressText = document.getElementById('progress-text');
+    
+    function updateProgress() {
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      progressText.textContent = `Готовность поездки: ${checked} / 13`;
+      progressText.style.color = checked === 13 ? 'var(--accent)' : 'var(--text)';
+    }
+
+    checkboxes.forEach(cb => {
+      cb.checked = localStorage.getItem(cb.id) === 'true';
+      cb.addEventListener('change', () => {
+        localStorage.setItem(cb.id, cb.checked);
+        updateProgress();
+      });
+    });
+    updateProgress();
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      if(confirm('Сбросить прогресс чек-листа?')) {
+        checkboxes.forEach(cb => { cb.checked = false; localStorage.removeItem(cb.id); });
+        updateProgress();
+      }
+    });
+
+    // 3. Плавный скролл + подсветка активного пункта меню
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Подсветка навигации при скролле
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 80;
+        if(pageYOffset >= sectionTop) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === `#${current}`) link.classList.add('active');
+      });
+      
+      // Кнопка наверх
+      document.getElementById('scrollTop').classList.toggle('hidden', window.scrollY < 400);
+    });
+    document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // 4. Внешние ссылки открываются через Telegram (опционально, но надежно)
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        tg.openLink(link.href);
+      });
+    });
+  </script>
+</body>
+</html>
